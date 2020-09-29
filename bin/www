@@ -25,6 +25,24 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+
+const ws = require('ws');
+
+const wsServer = new ws.Server( { noServer: true } );
+wsServer.on('connection', socket => {
+  socket.on('message', message => {
+    console.log(message);
+    console.log(socket._sender);
+    socket.send('reçu');
+  });
+});
+
+server.on('upgrade', (request, socket, head) => {
+  wsServer.handleUpgrade(request, socket, head, socket => {
+    wsServer.emit('connection', socket, request);
+  });
+});
+
  var models = require('../models');
 
  models.sequelize.sync().then(function () {

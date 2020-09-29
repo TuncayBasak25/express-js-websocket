@@ -41,6 +41,7 @@ var Sequelize = require('sequelize');
 
 var app = express();
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 //SESSIONS
 var session = require('express-session');
