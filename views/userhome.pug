@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div(class="d-flex flex-wrap justify-content-center" style="height: 100vh")
+    h1(class="text-center col-12") Hello #{user}, you can do nothing more than logout :P
+    
+    form(id="logout", action="/logout", method="POST")
+
+    div(class="w-25 mx-auto")
+      button(type="submit", form="logout", class="form-control btn btn-lg btn-primary") Logout
